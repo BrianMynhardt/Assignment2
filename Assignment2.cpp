@@ -34,7 +34,7 @@ class VolImage
 private:// private members
     int width, height;// width and height of image stack
     std::vector<unsigned char**> slices;// data for each slice, in order
-
+    string filename;
 public:// public members
     VolImage(){
         width = 0;
@@ -51,7 +51,7 @@ bool readImages(std::string baseName){
 
     string widthS,heightS,numImagesS;
     int numImages;
-    string filename = baseName + ".data";
+    filename = baseName + ".data";
 	string line;
 	string text;
 
@@ -88,13 +88,15 @@ bool readImages(std::string baseName){
                 unsigned char * row = new unsigned char [width];
                 image[i] = row;
             }
-            slices.push_back(b)]
+            slices.push_back(image);
         }
 
         for(int imageNum = 0; imageNum < numImages; imageNum++){
             filename = baseName + imageNum + ".raw";
             ifstream fin(filename.c_str());
-            for(int i = 0; i<height; i++)
+            for(int i = 0; i<height; i++){
+
+            }
         }
 
     }
