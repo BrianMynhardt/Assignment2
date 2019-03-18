@@ -13,40 +13,6 @@ int main(int argc, char** argv)
 {
     string imageBase = string(argv[1]);
     string flag;
-    int width,height,numImages;
-    string widthS,heightS,numImagesS;
-
-    string filename = imageBase + ".data";
-	string line;
-	string text;
-
-	// Open file with a file stream. ifstream constructor
-	// wants a C char * string, so call c_str() method.
-	ifstream in(filename.c_str());
-
-	if(!in)
-		{ cout << "Couldn't open " << filename << endl; }
-	else
-		{
-		while( getline(in,line))
-		{
-			text = "";
-			istringstream iss(line);
-			vector<string> results(istream_iterator<string>{iss}, istream_iterator<string>());
-			widthS =results.at(0);
-			heightS=results.at(1);
-			numImagesS=results.at(2);
-			istringstream Wiss(widthS);
-			Wiss>>width;
-			istringstream Hiss(heightS);
-			Hiss>>height;
-			istringstream Niss(numImagesS);
-			Niss>>numImages;
-			cout << width <<" "<<height<<" "<<numImages<<endl;
-		}
-        in.close();
-        }
-
 
     if(argc == 2){
 
@@ -81,7 +47,55 @@ public:// public members
 
     // populate the object with images in stack and
     //set member variables define in .cpp
-    bool readImages(std::string baseName){
+bool readImages(std::string baseName){
+
+    string widthS,heightS,numImagesS;
+    int numImages;
+    string filename = baseName + ".data";
+	string line;
+	string text;
+
+	// Open file with a file stream. ifstream constructor
+	// wants a C char * string, so call c_str() method.
+	ifstream in(filename.c_str());
+
+	if(!in)
+		{ cout << "Couldn't open " << filename << endl; }
+	else
+		{
+		while( getline(in,line))
+		{
+			text = "";
+			istringstream iss(line);
+			vector<string> results(istream_iterator<string>{iss}, istream_iterator<string>());
+			widthS =results.at(0);
+			heightS=results.at(1);
+			numImagesS=results.at(2);
+			istringstream Wiss(widthS);
+			Wiss>>width;
+			istringstream Hiss(heightS);
+			Hiss>>height;
+			istringstream Niss(numImagesS);
+			Niss>>numImages;
+			cout << width <<" "<<height<<" "<<numImages<<endl;
+		}
+        in.close();
+        }
+
+        for(int j = 0; j < numImages; j++){
+            unsigned char ** image = new unsigned char *[height];
+            for(int i = 0; i<height; i++){
+                unsigned char * row = new unsigned char [width];
+                image[i] = row;
+            }
+            slices.push_back(b)]
+        }
+
+        for(int imageNum = 0; imageNum < numImages; imageNum++){
+            filename = baseName + imageNum + ".raw";
+            ifstream fin(filename.c_str());
+            for(int i = 0; i<height; i++)
+        }
 
     }
 
